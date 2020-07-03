@@ -1,0 +1,7 @@
+/*sample 6*/
+void main(void{
+	int prod;
+	int i;
+		prod = 1;
+		i = 1;
+}

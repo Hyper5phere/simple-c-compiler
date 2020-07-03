@@ -1,0 +1,6 @@
+/*sample 4*/
+void main(){
+	int a;
+	int b;
+		a = b + 1;
+}

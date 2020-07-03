@@ -1,0 +1,15 @@
+/*sample 5*/
+int f(int a){
+return a * a;
+}
+void main(void){
+int a;
+int b;
+b =1; 
+if (b < 5) {
+a = f(b);
+}
+else{
+a = 4;
+}
+}

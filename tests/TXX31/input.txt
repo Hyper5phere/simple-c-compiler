@@ -1,0 +1,9 @@
+/*==== expressions/relop =====*/
+void main(void){
+	int a;
+	int b;
+	a = 10 * 2 + 3 * (1 < 0);
+	b = (a == 5) * 4 + 3;
+	output(a);
+	output(b);
+}

@@ -1,0 +1,19 @@
+/*==== return in conditionals =====*/
+int foo(int x){
+	int a;
+	a = 10;
+	output(x);
+	if(a < x){
+		return(1);
+	}
+	else {
+		return(2);
+	}
+}
+void main ( void )
+{
+	int i;
+	i = foo (4) ;
+	output (i);
+}
+

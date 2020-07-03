@@ -1,0 +1,17 @@
+void min(void){
+	switch (arr[g]){
+		case 2:
+			b = b + 1; */
+		case 3:
+			b = b + 2;
+			return;
+		case 4:
+		{
+			x = 5;
+			b = u * 123;
+			break;}
+		default:/*this is wrong *
+			b = b - 1;
+	}
+	return;
+}

@@ -1,0 +1,18 @@
+/* test case 3*/
+int foo(int x){
+	if (x < 0){
+		output(x);
+		return 1;
+	}
+	else {
+		output(x);
+		return x + 2;
+	}
+}
+void main(void){
+	int i;	
+	i= foo(0);
+	output(i);
+	i=foo(10);
+	output(i);
+}

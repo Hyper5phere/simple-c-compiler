@@ -1,0 +1,3 @@
+2.	(2x, illegal number)
+3.	(2a, illegal number)
+10.	(#, invalid input)

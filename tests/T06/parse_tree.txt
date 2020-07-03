@@ -1,0 +1,14 @@
+Program
+└── Declaration-list
+    └── Declaration
+        ├── Declaration-initial
+        │   ├── Type-specifier
+        │   │   └── (KEYWORD, void)
+        │   └── (ID, main)
+        └── Declaration-prime
+            └── Fun-declaration-prime
+                ├── (SYMBOL, ()
+                └── Params
+                    ├── (KEYWORD, void)
+                    └── Param-list-void-abtar
+                        └── (ID, prod)

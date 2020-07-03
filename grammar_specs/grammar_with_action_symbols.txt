@@ -1,0 +1,49 @@
+Program -> Declaration-list
+Declaration-list -> Declaration Declaration-list | EPSILON
+Declaration -> Declaration-initial Declaration-prime
+Declaration-initial -> #SA_SAVE_MAIN #SA_SAVE_TYPE Type-specifier #SA_SAVE_MAIN #SA_ASSIGN_TYPE ID
+Declaration-prime -> #SA_ASSIGN_FUN_ROLE Fun-declaration-prime | #SA_ASSIGN_VAR_ROLE #SA_MAIN_POP Var-declaration-prime
+Var-declaration-prime -> #SA_ASSIGN_LENGTH ; | [ #SA_ASSIGN_LENGTH NUM ] ;
+Fun-declaration-prime -> ( #SA_INC_SCOPE #SA_SAVE_MAIN Params #SA_ASSIGN_FUN_ATTRS ) #SA_MAIN_CHECK Compound-stmt #CG_CALC_STACKFRAME_SIZE #CG_RETURN_SEQ_CALLEE #SA_DEC_SCOPE
+Type-specifier -> int | void
+Params -> #SA_SAVE_TYPE #SA_SAVE_PARAM int #SA_ASSIGN_TYPE ID #SA_ASSIGN_PARAM_ROLE Param-prime Param-list | void Param-list-void-abtar
+Param-list-void-abtar -> ID Param-prime Param-list | EPSILON
+Param-list -> , #SA_SAVE_PARAM Param Param-list | EPSILON
+Param -> Declaration-initial #SA_ASSIGN_PARAM_ROLE Param-prime
+Param-prime -> #SA_ASSIGN_LENGTH [ ] | #SA_ASSIGN_LENGTH EPSILON
+Compound-stmt -> { Declaration-list Statement-list }
+Statement-list -> Statement Statement-list | EPSILON
+Statement -> Expression-stmt | Compound-stmt | Selection-stmt | Iteration-stmt | Return-stmt | Switch-stmt
+Expression-stmt -> Expression #CG_CLOSE_STMT ; | #SA_CHECK_WHILE #CG_CONT_JP continue ; | #SA_CHECK_BREAK #CG_BREAK_JP_SAVE break ; | ;
+Selection-stmt -> if ( Expression ) #CG_SAVE Statement else #CG_ELSE Statement #CG_IF_ELSE
+Iteration-stmt -> #SA_PUSH_WHILE while #CG_LABEL #CG_INIT_WHILE_STACKS ( Expression ) #CG_SAVE Statement #CG_WHILE #SA_POP_WHILE
+Return-stmt -> return Return-stmt-prime #CG_SET_RETVAL #CG_RETURN_SEQ_CALLEE
+Return-stmt-prime -> ; | Expression ;
+Switch-stmt -> #SA_PUSH_SWITCH switch ( Expression ) { Case-stmts Default-stmt } #SA_POP_SWITCH
+Case-stmts -> Case-stmt Case-stmts | EPSILON
+Case-stmt -> case NUM : Statement-list
+Default-stmt -> default : Statement-list | EPSILON
+Expression -> Simple-expression-zegond | #SA_CHECK_DECL #SA_SAVE_FUN #SA_SAVE_TYPE_CHECK #CG_PUSH_ID ID B
+B -> = Expression #SA_TYPE_CHECK #CG_ASSIGN | #SA_INDEX_ARRAY [ Expression ] #SA_INDEX_ARRAY_POP H | Simple-expression-prime
+H -> = Expression #SA_TYPE_CHECK #CG_ASSIGN | G D C
+Simple-expression-zegond -> Additive-expression-zegond C
+Simple-expression-prime -> Additive-expression-prime C
+C -> #CG_SAVE_OP Relop Additive-expression #SA_TYPE_CHECK #CG_RELOP | EPSILON
+Relop -> < | ==
+Additive-expression -> Term D
+Additive-expression-prime -> Term-prime D
+Additive-expression-zegond -> Term-zegond D
+D -> #CG_SAVE_OP Addop Term #SA_TYPE_CHECK #CG_ADDOP D | EPSILON
+Addop -> + | -
+Term -> Factor G
+Term-prime -> Factor-prime G
+Term-zegond -> Factor-zegond G
+G -> * Factor #SA_TYPE_CHECK #CG_MULT G | EPSILON
+Factor -> ( Expression ) | #SA_CHECK_DECL #SA_SAVE_FUN #SA_SAVE_TYPE_CHECK #CG_PUSH_ID ID Var-call-prime | #SA_SAVE_TYPE_CHECK #CG_PUSH_CONST NUM
+Var-call-prime -> #SA_PUSH_ARG_STACK ( Args #SA_CHECK_ARGS ) #CG_CALL_SEQ_CALLER #SA_POP_ARG_STACK | Var-prime
+Var-prime -> #SA_INDEX_ARRAY [ Expression ] #SA_INDEX_ARRAY_POP | EPSILON
+Factor-prime -> #SA_PUSH_ARG_STACK ( Args #SA_CHECK_ARGS ) #CG_CALL_SEQ_CALLER #SA_POP_ARG_STACK | EPSILON
+Factor-zegond -> ( Expression ) | #SA_SAVE_TYPE_CHECK #CG_PUSH_CONST NUM
+Args -> Arg-list | EPSILON
+Arg-list -> #SA_SAVE_ARG Expression Arg-list-prime
+Arg-list-prime -> , #SA_SAVE_ARG Expression Arg-list-prime | EPSILON

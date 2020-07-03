@@ -1,0 +1,10 @@
+#2 : Semantic Error! 'count' is not defined.
+#10 : Semantic Error! Illegal type of void for 'a'.
+#11 : Semantic Error! Type mismatch in operands, Got 'array' instead of 'int'.
+#12 : Semantic Error! Type mismatch in operands, Got 'void' instead of 'int'.
+#13 : Semantic Error! 'a' is not defined.
+#13 : Semantic Error! Type mismatch in operands, Got 'array' instead of 'int'.
+#13 : Semantic Error! Mismatch in type of argument 2 of 'f'. Expected 'array' but got 'int' instead.
+#14 : Semantic Error! 'a' is not defined.
+#15 : Semantic Error! No 'while' found for 'continue'
+#19 : Semantic Error! main function not found!

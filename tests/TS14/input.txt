@@ -1,0 +1,17 @@
+vod min(voi){
+	switch (arr[2xefg]){
+		case 2abcd:
+			b = b + 1;
+		case 3:
+			b = b + 2;
+			return;
+		case 4:
+		{
+			#x = 5;
+			b = u * 123;
+			break;}
+		default:
+			b = b - 1;
+	}
+	return;
+}

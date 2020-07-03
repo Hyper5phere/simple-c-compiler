@@ -1,0 +1,18 @@
+void main(void)
+{
+    int i; int j;
+    int a; int N;
+    i = 0-1;
+    a = 1;
+    j = 1;
+    N = 50; // prints this many even numbers xd 
+    while (j < 2 * N + 1) {
+        a = a * i;
+        if (a < 0) {
+        } else {
+            output(j);
+        }
+        j = j + 1;
+    }
+}
+

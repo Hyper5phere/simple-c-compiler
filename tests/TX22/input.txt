@@ -1,0 +1,21 @@
+/* test case 6*/
+void foo(int x){
+	
+switch(x){
+	case 0:
+		{ int a; }
+	case 1:
+		{output(2);
+		break;}
+	case 3:
+		output(3);
+		break;
+	deflt:
+		output(4);
+	}
+}
+void main ( void )
+
+{
+}
+

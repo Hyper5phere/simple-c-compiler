@@ -1,0 +1,3 @@
+#25 : Semantic Error! Illegal type of void for 'j'.
+#27 : Semantic Error! No 'while' or 'switch' found for 'break'.
+#33 : Semantic Error! Mismatch in numbers of arguments of 'f'.

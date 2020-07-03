@@ -1,0 +1,20 @@
+/*===== switch case =====*/
+void foo(int x){
+	switch(x){
+	case 0:
+		output(1);
+	case 1:
+		output(2);
+		break;
+	case 3:
+		output(3);
+		break;
+	default:
+		output(4);
+	}
+}
+void main ( void )
+{
+     foo (3) ;
+}
+

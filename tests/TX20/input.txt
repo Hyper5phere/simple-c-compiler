@@ -1,0 +1,10 @@
+/* test case 4*/
+int foo(int a, int b){
+	int bar(int a){
+		return a + 2;
+	}
+	return a + bar(b);
+}
+void main(void){
+	output(foo(1, 10));
+}

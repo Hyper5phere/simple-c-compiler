@@ -1,0 +1,15 @@
+1.	if
+2.	else
+3.	void
+4.	int
+5.	while
+6.	break
+7.	continue
+8.	switch
+9.	default
+10.	case
+11.	return
+12.	main
+13.	prod
+14.	i
+15.	output

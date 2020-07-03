@@ -1,0 +1,22 @@
+/*sample 3*/
+void main (void) {
+int a;
+int b;
+ b = 1;
+ a = 2;
+	switch (a){
+		case 2:
+			b = b + 1;
+		case 3:
+			b = b + 2;
+			return;
+		case 4:
+		{
+			a = 5;
+			b = a * 123;
+			break;}
+		default:
+			b = b - 1;
+	}
+	return;
+}

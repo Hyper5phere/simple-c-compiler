@@ -1,0 +1,18 @@
+void f(int a, int result[]) {
+	count = a;                /* count not defined? */
+}
+
+int count;
+int result[50];
+
+int main ( void ) {
+    int i;
+    void a;
+    i = result;                /* type mismatch? */
+    count = f(i, result);      /* function returns void */
+	f(i + a, i * result);      /* what are the types of the arguments? */
+    if (a == f(i, result)) {   /* void types match in comparison? */
+        continue;              /* not inside while although properly nested */
+    } else {
+    return 0;}
+}

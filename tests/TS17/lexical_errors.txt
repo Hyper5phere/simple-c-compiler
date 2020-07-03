@@ -1,0 +1,2 @@
+6.	(whi$, invalid input)
+11.	(1d, illegal number)
