@@ -1,4 +1,10 @@
-/*=== Hard == */
+/* 
+ * Hard example source code
+ * 
+ * prints N length sequence of sums of i first odd numbers
+ * where i is the index of the sum in the sequence
+ */
+
 int abs(int a) {
     if (a < 0) {
         return 0-a;
@@ -53,9 +59,14 @@ void main(void) {
     int i;
     int j;
     int sum;
+    int N;
+    
     i = 1;
     j = 1;
-    while (i < 11) {
+
+    N = 5; // change me to increase length of sequence
+
+    while (i < N * 2 + 1) {
         sum = 0;
         j = 0;
         while (j < i) {
@@ -67,7 +78,7 @@ void main(void) {
             }
         }
         output(sum);
-        i = i + 1;
+        i = i + 2;
 
     }
 

@@ -114,7 +114,7 @@ class CodeGen(object):
 
         self.program_block = []
 
-        self.output_file = os.path.join(script_dir, "output.txt")
+        self.output_file = os.path.join(os.path.dirname(script_dir), "output", "output.txt")
 
     
     @property
