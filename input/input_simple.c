@@ -14,7 +14,7 @@ void main(void) {
     i = 1;
     j = 1;
 
-    N = 5; // change me to increase number of odd numbers
+    N = 15; // change me to increase number of odd numbers
 
     while (i < N * 2 + 1) {
         j = m * j;

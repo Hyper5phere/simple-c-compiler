@@ -1,6 +1,8 @@
-# C-minus Compiler written in Python
+# Simple C Compiler written in Python
 
-C-minus is a subset of C programming language with limited capabilities. Currently it supports only integer typed variables.
+Simple C Compiler supports a subset of C programming language. Most notably it has only integer typed variables. Nevertheless, it is a fully functional C compiler front-end for generating intermediate representation (IR) three address codes from a C source file. Also an interpreter for the three address "assembly" code is provided for all major platforms (Windows, Linux and Mac).
+
+As the name hints, it is also simple to use! Only one python module needed to start using it!
 
 ## Requirements
 
@@ -12,7 +14,7 @@ pip install anytree
 
 ## Installation and Testing
 
-For testing there is a simple test program that prints the 5 first odd numbers
+For testing the compiler here is a simple test program that prints the 5 first odd numbers
 ```c
 /* 
  * Simple example source code
@@ -53,7 +55,7 @@ python compiler.py input/input_simple.c --run
 ```
 
 ## Possible Future Improvements
-One could implement support for
+Language support for
 - arrays
 - recursion
 - string types
