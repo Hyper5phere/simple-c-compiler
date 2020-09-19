@@ -57,7 +57,7 @@ Program
     │               │   ├── Statement
     │               │   │   └── Expression-stmt
     │               │   │       ├── Expression
-    │               │   │       │   ├── (ID, i)
+    │               │   │       │   ├── (ID, m)
     │               │   │       │   └── B
     │               │   │       │       ├── (SYMBOL, =)
     │               │   │       │       └── Expression
@@ -65,11 +65,19 @@ Program
     │               │   │       │               ├── Additive-expression-zegond
     │               │   │       │               │   ├── Term-zegond
     │               │   │       │               │   │   ├── Factor-zegond
-    │               │   │       │               │   │   │   └── (NUM, 1)
+    │               │   │       │               │   │   │   └── (NUM, 0)
     │               │   │       │               │   │   └── G
     │               │   │       │               │   │       └── EPSILON
     │               │   │       │               │   └── D
-    │               │   │       │               │       └── EPSILON
+    │               │   │       │               │       ├── Addop
+    │               │   │       │               │       │   └── (SYMBOL, -)
+    │               │   │       │               │       ├── Term
+    │               │   │       │               │       │   ├── Factor
+    │               │   │       │               │       │   │   └── (NUM, 1)
+    │               │   │       │               │       │   └── G
+    │               │   │       │               │       │       └── EPSILON
+    │               │   │       │               │       └── D
+    │               │   │       │               │           └── EPSILON
     │               │   │       │               └── C
     │               │   │       │                   └── EPSILON
     │               │   │       └── (SYMBOL, ;)
@@ -77,7 +85,7 @@ Program
     │               │       ├── Statement
     │               │       │   └── Expression-stmt
     │               │       │       ├── Expression
-    │               │       │       │   ├── (ID, j)
+    │               │       │       │   ├── (ID, i)
     │               │       │       │   └── B
     │               │       │       │       ├── (SYMBOL, =)
     │               │       │       │       └── Expression
@@ -97,7 +105,7 @@ Program
     │               │           ├── Statement
     │               │           │   └── Expression-stmt
     │               │           │       ├── Expression
-    │               │           │       │   ├── (ID, m)
+    │               │           │       │   ├── (ID, j)
     │               │           │       │   └── B
     │               │           │       │       ├── (SYMBOL, =)
     │               │           │       │       └── Expression
@@ -105,19 +113,11 @@ Program
     │               │           │       │               ├── Additive-expression-zegond
     │               │           │       │               │   ├── Term-zegond
     │               │           │       │               │   │   ├── Factor-zegond
-    │               │           │       │               │   │   │   └── (NUM, 0)
+    │               │           │       │               │   │   │   └── (NUM, 1)
     │               │           │       │               │   │   └── G
     │               │           │       │               │   │       └── EPSILON
     │               │           │       │               │   └── D
-    │               │           │       │               │       ├── Addop
-    │               │           │       │               │       │   └── (SYMBOL, -)
-    │               │           │       │               │       ├── Term
-    │               │           │       │               │       │   ├── Factor
-    │               │           │       │               │       │   │   └── (NUM, 1)
-    │               │           │       │               │       │   └── G
-    │               │           │       │               │       │       └── EPSILON
-    │               │           │       │               │       └── D
-    │               │           │       │               │           └── EPSILON
+    │               │           │       │               │       └── EPSILON
     │               │           │       │               └── C
     │               │           │       │                   └── EPSILON
     │               │           │       └── (SYMBOL, ;)

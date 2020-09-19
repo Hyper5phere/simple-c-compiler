@@ -12,7 +12,7 @@ Python version:     3.6
 
 import os
 
-script_dir = os.path.dirname(os.path.abspath(__file__))
+script_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 class SymbolTableManager(object):
     ''' Manages the symbol table of the compiler 
@@ -156,6 +156,8 @@ class Scanner(object):
 
     def __init__(self, input_file, chunk_size=8192, max_state_size=float("inf")):
         assert chunk_size >= 16, "Minimum supported chunk size is 16!"
+        if not os.path.isabs(input_file):
+            input_file = os.path.join(script_dir, input_file)
         self.input_file = input_file
         self.line_number = 1
         self.first_line = 1
@@ -164,9 +166,10 @@ class Scanner(object):
         self.tokens[self.line_number] = []
         self.max_state_size = max_state_size # how many lines of tokens we want to keep in memory (default: unlimited)
 
-        self.tokens_file = os.path.join(script_dir, "tokens.txt")
-        self.errors_file = os.path.join(script_dir, "lexical_errors.txt")
-        self.symbol_file = os.path.join(script_dir, "symbol_table.txt")
+        self.tokens_file = os.path.join(script_dir, "output", "tokens.txt")
+        self.symbol_file = os.path.join(script_dir, "output", "symbol_table.txt")
+
+        self.errors_file = os.path.join(script_dir, "errors", "lexical_errors.txt")
 
         self.chunk_size = chunk_size
         self.file_pointer = 0

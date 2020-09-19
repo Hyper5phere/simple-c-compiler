@@ -16,7 +16,7 @@ from scanner import Scanner, SymbolTableManager
 from semantic_analyser import SemanticAnalyser
 from code_gen import CodeGen, MemoryManager
 
-script_dir = os.path.dirname(os.path.abspath(__file__))
+script_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 non_terminal_to_missing_construct = {
     "Program"                       : "int ID;",
@@ -305,6 +305,8 @@ parsing_table = (
 
 class Parser(object):
     def __init__(self, input_file):
+        if not os.path.isabs(input_file):
+            input_file = os.path.join(script_dir, input_file)
         self.scanner = Scanner(input_file)
         self.semantic_analyzer = SemanticAnalyser()
         self.code_generator = CodeGen()
@@ -313,8 +315,8 @@ class Parser(object):
         self.parse_tree = self.root
         self.stack = [Node("$"), self.root]
         
-        self.parse_tree_file = os.path.join(script_dir, "parse_tree.txt")
-        self.syntax_error_file = os.path.join(script_dir, "syntax_errors.txt")
+        self.parse_tree_file = os.path.join(script_dir, "output", "parse_tree.txt")
+        self.syntax_error_file = os.path.join(script_dir, "errors", "syntax_errors.txt")
 
 
     @property    

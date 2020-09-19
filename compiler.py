@@ -80,14 +80,14 @@ def compile(args):
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description='Automatic test case runner for Compilers course exercises.')
-    parser.add_argument("source_file")
+    parser = argparse.ArgumentParser(description='Simple C Compiler written in Python')
+    parser.add_argument("source_file", help="Path to C source file.")
     parser.add_argument('-r', '--run', action='store_true', help='Run the output program after compilation.')
     parser.add_argument('-v', '--verbose', action='store_true', help='Print all used three address codes.')
     parser.add_argument('-ef', '--error-files', action='store_true', help='Save compilation errors to text files.')
-    parser.add_argument('-ast', '--abstract-syntax-tree', action='store_true', help='Save abstract syntax tree to a text file.')
-    parser.add_argument('-st', '--symbol-table', action='store_true', help='Save symbol table to a text file.')
-    parser.add_argument('-t', '--tokens', action='store_true', help='Save tokens to a text file.')
+    parser.add_argument('-ast', '--abstract-syntax-tree', action='store_true', help='Save abstract syntax tree into a text file.')
+    parser.add_argument('-st', '--symbol-table', action='store_true', help='Save symbol table into a text file.')
+    parser.add_argument('-t', '--tokens', action='store_true', help='Save lexed tokens into a text file.')
     args = parser.parse_args()
     if not os.path.isabs(args.source_file):
         args.source_file = os.path.abspath(script_dir)

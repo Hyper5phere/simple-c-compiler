@@ -1,4 +1,9 @@
 import os
+import sys
+
+script_dir = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, os.path.join(script_dir, "modules"))
+
 import difflib
 import argparse
 from subprocess import check_output, PIPE, TimeoutExpired
@@ -71,6 +76,7 @@ for test_case in sorted(os.listdir(test_dir)):
         i += 1
         continue
     test_case_dir = os.path.join(test_dir, test_case)
+    output_dir = os.path.join(script_dir, "output")
     test_files = list(os.listdir(test_case_dir))
     input_file = os.path.join(test_case_dir, test_files.pop(test_files.index("input.txt")))
 
@@ -88,9 +94,14 @@ for test_case in sorted(os.listdir(test_dir)):
 
     if not fail:
         if test_case.startswith("TXX"):
-            tester_file = os.path.join(script_dir, "tester_Windows.exe") # change if different OS
+            if os.name == "nt":
+                tester_file = os.path.join(script_dir, "interpreter", "tester_Windows.exe")
+            elif os.name == "posix":
+                tester_file = os.path.join(script_dir, "interpreter", "tester_Linux.out")
+            else:
+                tester_file = os.path.join(script_dir, "interpreter", "tester_Mac.out")
             model_output_file = os.path.join(test_case_dir, "output.txt")
-            output_file = os.path.join(script_dir, "output.txt")
+            output_file = os.path.join(script_dir, "output", "output.txt")
             if not os.path.exists(output_file):
                 fail = True
             else:
@@ -101,7 +112,7 @@ for test_case in sorted(os.listdir(test_dir)):
                     output = f.read()
                 try:
                     model_tester_output = check_output(tester_file, cwd=test_case_dir, stderr=PIPE, timeout=5).decode("utf-8")
-                    tester_output = check_output(tester_file, cwd=script_dir, stderr=PIPE, timeout=5).decode("utf-8")
+                    tester_output = check_output(tester_file, cwd=output_dir, stderr=PIPE, timeout=5).decode("utf-8")
                 except TimeoutExpired:
                     print(f"{test_case}: Tester program execution timed out!")
                     fail = True
@@ -111,19 +122,22 @@ for test_case in sorted(os.listdir(test_dir)):
                     tester_output = "\n".join([line for line in tester_output.splitlines()
                                                     if line.startswith("PRINT")])
 
-                    fail = check_diff(test_case, None, model_tester_output, tester_output)
+                    fail = check_diff(test_case, None, model_tester_output.strip(), tester_output.strip())
         else:
             for test_file in test_files:
                 model_answer_file = os.path.join(test_case_dir, test_file)
-                output_file = os.path.join(script_dir, test_file)
+                if "error" in test_file:
+                    output_file = os.path.join(script_dir, "errors", test_file)
+                else:
+                    output_file = os.path.join(script_dir, "output", test_file)
                 if not os.path.exists(output_file):
                     open(output_file, "a").close()
                 
                 with open(model_answer_file, "r", encoding="utf-8") as f:
-                    model_answer = f.read().lower()
+                    model_answer = f.read().lower().strip()
 
                 with open(output_file, "r", encoding="utf-8") as f:
-                    output = f.read().lower()
+                    output = f.read().lower().strip()
 
                 fail = check_diff(test_case, test_file, model_answer, output)
                 

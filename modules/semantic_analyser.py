@@ -13,7 +13,7 @@ import os
 from scanner import SymbolTableManager
 from code_gen import MemoryManager
 
-script_dir = os.path.dirname(os.path.abspath(__file__))
+script_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
 class SemanticAnalyser(object):
@@ -81,7 +81,7 @@ class SemanticAnalyser(object):
         self.fun_arg_list = []
 
         self._semantic_errors = []
-        self.semantic_error_file = os.path.join(script_dir, "semantic_errors.txt")
+        self.semantic_error_file = os.path.join(script_dir, "errors", "semantic_errors.txt")
 
 
     @property

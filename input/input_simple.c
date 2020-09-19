@@ -5,14 +5,16 @@
  */
 
 void main(void) {
+    /* all variables need to be declared first */
     int i;
     int j;
     int m;
     int N;
     
-    m = 0-1;
+    /* ...and then assigned to */
     i = 1;
     j = 1;
+    m = 0-1; // syntax only supports binary operations, this is how we get -1
 
     N = 15; // change me to increase number of odd numbers
 
@@ -21,9 +23,8 @@ void main(void) {
         if (j < 0) {
             output(i);
         } else {
-            // do nothing
+            // do nothing, the syntax does not support if without else :^)
         }
         i = i + 1;
     }
-
 }
