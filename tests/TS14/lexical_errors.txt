@@ -1,3 +1,3 @@
-2.	(2x, illegal number)
-3.	(2a, illegal number)
-10.	(#, invalid input)
+#2 : Lexical Error! '2x' rejected, reason: illegal number.
+#3 : Lexical Error! '2a' rejected, reason: illegal number.
+#10 : Lexical Error! '#' rejected, reason: invalid input.

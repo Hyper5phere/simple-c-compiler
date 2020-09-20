@@ -1,2 +1,2 @@
-6.	(whi$, invalid input)
-11.	(1d, illegal number)
+#6 : Lexical Error! 'whi$' rejected, reason: invalid input.
+#11 : Lexical Error! '1d' rejected, reason: illegal number.

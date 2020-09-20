@@ -33,7 +33,7 @@ def compile(args):
     if not SymbolTableManager.error_flag:
         print("Compilation successful!")
     else:
-        print("Compilation failed due to following errors:")
+        print("Compilation failed due to following errors:\n")
         print(parser.scanner.lexical_errors)
         print(parser.syntax_errors)
         print(parser.semantic_analyzer.semantic_errors)

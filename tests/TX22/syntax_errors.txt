@@ -1,2 +1,2 @@
-#13 : Syntax Error, Illegal ":"
-#14 : Syntax Error, Illegal "ID"
+#13 : Syntax Error! Illegal ":"
+#14 : Syntax Error! Illegal "ID"

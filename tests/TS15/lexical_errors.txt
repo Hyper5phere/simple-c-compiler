@@ -1,2 +1,2 @@
-4.	(*/, Unmatched */)
-13.	(/*this is wrong ..., unclosed comment)
+#4 : Lexical Error! '*/' rejected, reason: Unmatched */.
+#13 : Lexical Error! '/*this is wrong ...' rejected, reason: unclosed comment.

@@ -1,1 +1,1 @@
-#7 : Syntax Error, Missing "NUM"
+#7 : Syntax Error! Missing "NUM"

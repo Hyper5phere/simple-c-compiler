@@ -199,7 +199,7 @@ class Scanner(object):
         lexical_errors = []
         if self._lexical_errors:
             for lineno, lexim, error in self._lexical_errors:
-                lexical_errors.append(f"{lineno}.\t({lexim}, {error})\n")
+                lexical_errors.append(f"#{lineno} : Lexical Error! '{lexim}' rejected, reason: {error}.\n")
         else:
             lexical_errors.append("There is no lexical errors.")
         return "".join(lexical_errors)

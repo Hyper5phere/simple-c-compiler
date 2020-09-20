@@ -139,7 +139,7 @@ for test_case in sorted(os.listdir(test_dir)):
                 with open(output_file, "r", encoding="utf-8") as f:
                     output = f.read().lower().strip()
 
-                fail = check_diff(test_case, test_file, model_answer, output)
+                fail = fail or check_diff(test_case, test_file, model_answer, output)
                 
     if fail:
         print(f"{test_case} failed!")

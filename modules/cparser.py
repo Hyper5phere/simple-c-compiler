@@ -319,7 +319,7 @@ class Parser(object):
         syntax_errors = []
         if self._syntax_errors:
             for lineno, error in self._syntax_errors:
-                syntax_errors.append(f"#{lineno} : Syntax Error, {error}\n")
+                syntax_errors.append(f"#{lineno} : Syntax Error! {error}\n")
         else:
             syntax_errors.append("There is no syntax error.")
         return "".join(syntax_errors)

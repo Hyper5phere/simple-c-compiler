@@ -1,4 +1,4 @@
-#18 : Syntax Error, Missing "]"
-#18 : Syntax Error, Missing ";"
-#18 : Syntax Error, Illegal ")"
-#18 : Syntax Error, Illegal "]"
+#18 : Syntax Error! Missing "]"
+#18 : Syntax Error! Missing ";"
+#18 : Syntax Error! Illegal ")"
+#18 : Syntax Error! Illegal "]"

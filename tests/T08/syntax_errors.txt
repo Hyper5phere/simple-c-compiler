@@ -1,1 +1,1 @@
-#2 : Syntax Error, Missing "void"
+#2 : Syntax Error! Missing "void"
