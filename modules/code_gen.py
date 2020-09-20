@@ -1,13 +1,8 @@
 '''
-CS-E4002 - Special Course in Computer Science: Compilers
-========================================================
-
-Programming Exercise 5 - Intermediate Code Generator
+Intermediate Code Generator module of the Simple C Compiler
 
 Author:             Pasi Pyrrö
-Student Number:     426985
 Date:               1 April 2020
-Python version:     3.6
 '''
 
 import os

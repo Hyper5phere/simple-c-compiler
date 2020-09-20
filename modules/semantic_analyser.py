@@ -1,14 +1,10 @@
 '''
-CS-E4002 - Special Course in Computer Science: Compilers
-========================================================
-
-Programming Exercise 4 - Semantic Analyser
+Semantic Analyser module of the Simple C Compiler
 
 Author:             Pasi Pyrrö
-Student Number:     426985
 Date:               16 March 2020
-Python version:     3.6
 '''
+
 import os
 from scanner import SymbolTableManager
 from code_gen import MemoryManager

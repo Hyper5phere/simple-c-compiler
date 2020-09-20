@@ -5,8 +5,10 @@ Simple C Compiler supports a subset of C programming language. Most notably it h
 As the name hints, it is also simple to use! Only one python module needed to start using it!
 
 ## Requirements
+All major operating systems (Windows, Linux and Mac) should be supported.
 
 Make sure Python 3.6 or newer interpreter is installed on your system. Then install the ``anytree`` package with pip
+
 ```bash
 
 pip install anytree
@@ -60,7 +62,7 @@ To see all input arguments type
 python compiler.py --help
 ```
 
-All output of the compiler is stored in the ``./output`` folder and all the input examples can be found from ``./input`` folder. Additionally errors are logged in the ``./errors/`` folder if ``--error-files`` input flag is used.
+All output of the compiler is stored in the ``./output`` folder and all the input examples can be found from ``./input`` folder. Additionally errors are logged in the ``./errors`` folder if ``--error-files`` input flag is used.
 
 
 ## Possible Future Improvements
