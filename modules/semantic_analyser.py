@@ -92,7 +92,7 @@ class SemanticAnalyser(object):
             for lineno, error in self._semantic_errors:
                 semantic_errors.append(f"#{lineno} : Semantic Error! {error}\n")
         else:
-            semantic_errors.append("The input program is semantically correct.")
+            semantic_errors.append("The input program is semantically correct.\n")
         return "".join(semantic_errors)
 
 
