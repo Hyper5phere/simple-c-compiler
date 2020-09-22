@@ -459,5 +459,5 @@ def main(input_path):
 
 
 if __name__ == "__main__":
-    input_path = os.path.join(script_dir, "input.txt")
+    input_path = os.path.join(script_dir, "input/input_simple.c")
     main(input_path)

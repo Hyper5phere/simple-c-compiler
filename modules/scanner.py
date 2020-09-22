@@ -271,7 +271,6 @@ class Scanner(object):
             self.input = self.input.lstrip(" ").lstrip("\t")
 
 
-
     def update_symbol_table(self, lexim):
         symbol_id = SymbolTableManager.install_id(lexim)
         if symbol_id == len(SymbolTableManager.symbol_table):
@@ -399,5 +398,6 @@ def main(input_path):
 
 
 if __name__ == "__main__":
-    input_path = os.path.join(script_dir, "input.txt")
+    SymbolTableManager.init()
+    input_path = os.path.join(script_dir, "input/input_simple.c")
     main(input_path)
