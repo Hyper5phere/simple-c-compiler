@@ -11,9 +11,9 @@ from code_gen import MemoryManager
 
 script_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-
 class SemanticAnalyser(object):
     def __init__(self):
+
         # routines
         self.semantic_checks = {
             "#SA_INC_SCOPE" : self.inc_scope_routine,
@@ -55,28 +55,29 @@ class SemanticAnalyser(object):
             "#SA_INDEX_ARRAY_POP" : self.index_array_pop_routine,
             "#SA_TYPE_CHECK" : self.type_check_routine,
         }
-        # accosiated stacks
+
+        # associated stacks
         self.semantic_stacks = {
             "main_check" : [],
             "type_assign" : [],
             "type_check" : [],
             "fun_check" : [],
         }
+
         # flags
         self.main_found = False
         self.main_not_last = False
 
         # counters
         self.arity_counter = 0
-        # self.arg_lists = {}
         self.while_counter = 0
         self.switch_counter = 0
 
         # lists
         self.fun_param_list = []
         self.fun_arg_list = []
-
         self._semantic_errors = []
+
         self.semantic_error_file = os.path.join(script_dir, "errors", "semantic_errors.txt")
 
 
@@ -158,12 +159,7 @@ class SemanticAnalyser(object):
             symbol_row = SymbolTableManager.symbol_table[symbol_idx]
             symbol_row["role"] = role
             if self.scope == 0:
-                # symbol_row["address"] = MemoryManager.static_offset
-                # MemoryManager.static_offset += 4
                 symbol_row["role"] = "global_var"
-            # else:
-            #     symbol_row["offset"] = MemoryManager.stack_frame_offset
-            #     MemoryManager.stack_frame_offset += 4
             if symbol_row["type"] == "void":
                 SymbolTableManager.error_flag = True
                 self._semantic_errors.append((line_number, "Illegal type of void for '{}'.".format(symbol_row["lexim"])))
@@ -182,8 +178,6 @@ class SemanticAnalyser(object):
                     symbol_row["offset"] = MemoryManager.get_param_offset()
                 else: 
                     symbol_row["address"] = MemoryManager.get_static(int(input_token[1]))
-                # if self.scope == 0:
-                #     MemoryManager.static_offset += 4 * (int(input_token[1]) - 1)
             else:
                 SymbolTableManager.symbol_table[symbol_idx]["arity"] = 1
                 if symbol_row["role"] == "param":
@@ -258,7 +252,6 @@ class SemanticAnalyser(object):
             fun_id = self.semantic_stacks["fun_check"].pop()
             lexim = SymbolTableManager.symbol_table[fun_id]["lexim"]
             args = SymbolTableManager.arg_list_stack[-1]
-            # args = self.arg_lists.get(fun_id)
             if args is not None:
                 self.semantic_stacks["type_check"] = self.semantic_stacks["type_check"][:len(args)]
                 if SymbolTableManager.symbol_table[fun_id]["arity"] != len(args):
@@ -272,8 +265,6 @@ class SemanticAnalyser(object):
                             SymbolTableManager.error_flag = True
                             self._semantic_errors.append((line_number, f"Mismatch in type of argument {i} of '{lexim}'. Expected '{param}' but got '{arg}' instead."))
                         i += 1
-                # self.arg_lists[fun_id] = []
-                # SymbolTableManager.arg_list_stack[-1] = []
 
 
     def push_while_routine(self, input_token, line_number):
@@ -340,15 +331,13 @@ class SemanticAnalyser(object):
         except IndexError:
             pass
 
+
     ''' semantic routines end here '''
 
 
     def semantic_check(self, action_symbol, input_token, line_number):
         try:
             self.semantic_checks[action_symbol](input_token, line_number)
-        # except KeyError as e:
-        #     raise e
-        #     raise NotImplementedError(f"No semantic check for action symbol '{action_symbol}' found!")
         except Exception as e:
             print(f"{line_number} : Error in semantic routine {action_symbol}:", str(e))
 

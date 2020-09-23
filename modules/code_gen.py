@@ -15,9 +15,9 @@ class MemoryManager(object):
 
     @classmethod
     def init(cls):
-        cls.static_base_ptr = 1000  # 1024
-        cls.temp_base_ptr   = 5000  # 8196
-        cls.stack_base_ptr  = 10008 # 16392
+        cls.static_base_ptr = 1000
+        cls.temp_base_ptr   = 5000
+        cls.stack_base_ptr  = 10008
 
         cls.static_offset   = 0
         cls.temp_offset     = 0
@@ -27,7 +27,8 @@ class MemoryManager(object):
         cls.arrays_field_offset = 0
         cls.temps_field_offset  = 0
 
-        cls.pb_index = 0            # program block index
+        cls.pb_index = 0  # program block index
+
 
     @classmethod
     def reset(cls):
@@ -37,6 +38,7 @@ class MemoryManager(object):
         cls.array_field_offset = 0
         cls.temp_field_offset  = 0
 
+
     @classmethod
     def get_temp(cls):
         temp = cls.temp_base_ptr + cls.temp_offset
@@ -44,11 +46,13 @@ class MemoryManager(object):
         SymbolTableManager.temp_stack[-1] += 4
         return temp 
 
+
     @classmethod
     def get_static(cls, arity=1):
         temp = cls.static_base_ptr + cls.static_offset
         cls.static_offset += 4 * arity
         return temp
+
 
     @classmethod
     def get_param_offset(cls, arity=1):
@@ -236,7 +240,6 @@ class CodeGen(object):
 
     def assign_routine(self, input_token):
         try:
-            # self.expression_assigned = True
             A = self._resolve_addr(self.semantic_stack.pop())
             R = self._resolve_addr(self.semantic_stack[-1])
             self._add_three_addr_code(("assign", A, R))
@@ -260,12 +263,14 @@ class CodeGen(object):
         except IndexError:
             pass
     
+
     def addop_routine(self, input_token):
         try:
             op = self.semantic_stack.pop(-2)
             self.binary_op_routine(op)
         except IndexError:
             pass
+
 
     def binary_op_routine(self, op):
         try:
@@ -336,7 +341,6 @@ class CodeGen(object):
             for i in range(n_args):
                 stack.pop()
                 arg = args[i]
-                # arg_addr = self._resolve_addr(arg)
                 if isinstance(arg, int):
                     arg_addr = arg
                 elif "address" in arg:
@@ -350,7 +354,6 @@ class CodeGen(object):
                 if callee["params"][-i-1] == "array":
                     arg_addr = f"#{arg}" # pass by reference
                 self._add_three_addr_code(self._get_three_addr_code("assign", arg_addr, f"@{t_args}"), insert=backpatch)
-                # self._add_three_addr_code(self._get_three_addr_code("print", f"@{t_args}"), insert=backpatch)
                 self._add_three_addr_code(self._get_add_code(t_args, "#4", t_args), insert=backpatch)
             fun_addr = stack.pop()["address"] 
             # put pointers for return address and return value in temp variables 
@@ -421,6 +424,7 @@ class CodeGen(object):
             else:
                 fun_row["args_size"] += 4
         fun_row["frame_size"] = fun_row["args_size"] + 12
+        # If arrays are to be implemented use this
         # fun_row["frame_size"] = fun_row["args_size"] + fun_row["locals_size"] \
         #                       + fun_row["arrays_size"] + fun_row["temps_size"] + 12
         fun_row["args_offset"] = 4
@@ -435,8 +439,6 @@ class CodeGen(object):
 
     
     def set_retval_routine(self, input_token):
-        # if self.semantic_stack:
-        
         # save return value address into temp variable
         t = MemoryManager.get_temp()
         self._add_three_addr_code(self._get_sub_code(self.stack_frame_ptr_addr, "#8", t))
@@ -460,10 +462,8 @@ class CodeGen(object):
     
 
     def close_stmt_routine(self, input_token):
-        # if not self.expression_assigned and self.semantic_stack:
         if self.semantic_stack:
             self.semantic_stack.pop() # pop result of last assignment
-        # self.expression_assigned = False
 
     
     def label_routine(self, input_token):
