@@ -4,6 +4,8 @@ Simple C Compiler supports a subset of C programming language. Most notably it h
 
 As the name hints, it is also simple to use! Only one python module needed to start using it!
 
+This compiler implementation is also part of a [blog post about designing and implementing compilers](https://medium.com/@pasi_pyrro/how-to-write-your-own-c-compiler-from-scratch-with-python-90ab84ffe071), you might wanna check it out!
+
 ## Requirements
 All major operating systems (Windows, Linux and Mac) should be supported.
 
