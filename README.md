@@ -18,7 +18,7 @@ pip install anytree
 
 ## Installation and Testing
 
-For testing the compiler here is a simple test program that prints the 5 first odd numbers
+For testing the compiler here is a simple test program that prints the 15 first odd numbers
 ```c
 /* 
  * Simple example source code
