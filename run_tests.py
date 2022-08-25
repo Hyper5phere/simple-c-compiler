@@ -6,6 +6,7 @@ sys.path.insert(0, os.path.join(script_dir, "modules"))
 
 import difflib
 import argparse
+import platform
 from subprocess import check_output, PIPE, TimeoutExpired
 from cparser import main as parse
 from scanner import main as scan
@@ -91,12 +92,15 @@ for test_case in sorted(os.listdir(test_dir)):
 
     if not fail:
         if test_case.startswith("TXX"):
-            if os.name == "nt":
+            plat = platform.system()
+            if plat == "Windows":
                 tester_file = os.path.join(script_dir, "interpreter", "tester_Windows.exe")
-            elif os.name == "posix":
+            elif plat == "Linux":
                 tester_file = os.path.join(script_dir, "interpreter", "tester_Linux.out")
-            else:
+            elif plat == "Darwin":
                 tester_file = os.path.join(script_dir, "interpreter", "tester_Mac.out")
+            else:
+                raise RuntimeError("Unsupported operating system for code execution!")
             model_output_file = os.path.join(test_case_dir, "output.txt")
             output_file = os.path.join(script_dir, "output", "output.txt")
             if not os.path.exists(output_file):

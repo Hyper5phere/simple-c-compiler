@@ -2,6 +2,7 @@ import os
 import sys
 import time
 import argparse
+import platform
 import subprocess as sp 
 
 script_dir = os.path.dirname(os.path.abspath(__file__))
@@ -50,16 +51,19 @@ def compile(args):
     parser.code_generator.save_output()
     if args.run and not SymbolTableManager.error_flag:
         print("Executing compiled program")
-        if os.name == "nt":
+        plat = platform.system()
+        if plat == "Windows":
             tester_file = os.path.join(script_dir, "interpreter", "tester_Windows.exe")
-        elif os.name == "posix":
+        elif plat == "Linux":
             tester_file = os.path.join(script_dir, "interpreter", "tester_Linux.out")
-        else:
+        elif plat == "Darwin":
             tester_file = os.path.join(script_dir, "interpreter", "tester_Mac.out")
+        else:
+            raise RuntimeError("Unsupported operating system for code execution!")
         output_file = os.path.join(script_dir, "output", "output.txt")
         output_dir = os.path.dirname(output_file)
         if os.path.exists(output_file):
-            preexec_fn = limit_virtual_memory if os.name != "nt" else None
+            preexec_fn = limit_virtual_memory if plat == "Linux" else None
             stderr = sp.PIPE if not args.verbose else None
             start = time.time()
             try:
