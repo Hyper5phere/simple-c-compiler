@@ -1,7 +1,7 @@
 import os
 import sys
 
-script_dir = os.path.dirname(os.path.abspath(__file__))
+script_dir = os.path.dirname(os.path.realpath(__file__))
 sys.path.insert(0, os.path.join(script_dir, "modules"))
 
 import difflib
@@ -9,12 +9,11 @@ import argparse
 from subprocess import check_output, PIPE, TimeoutExpired
 from cparser import main as parse
 from scanner import main as scan
-from time import sleep
 
 '''
 Expected folder structure for automatic testing
 
-exercise
+project_root
     ├── input.txt
     ├── scanner.py
     ├── parser.py
@@ -45,13 +44,11 @@ parser.add_argument('--from-test', type=int, default=0, help='Test number to sta
 parser.add_argument('--to-test', type=int, default=None, help='Test number to stop to')
 args = parser.parse_args()
 
-script_dir = os.path.dirname(os.path.abspath(__file__))
 test_dir = os.path.join(script_dir, "tests")
 
 passes = 0
 tests = 0
 i = 0
-
 
 def check_diff(test_case, test_file, model_answer, output):
     if model_answer != output:
